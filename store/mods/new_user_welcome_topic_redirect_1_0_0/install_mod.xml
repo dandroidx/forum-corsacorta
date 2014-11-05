@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[New User Welcome Topic Redirect]]></title>
+		<description lang="en"><![CDATA[Redirects all new users to a specific topic within the forum when they first log in to the board.]]></description>
+		<author-group>
+			<author>
+				<realname><![CDATA[Mark Barnes]]></realname>
+				<username><![CDATA[MarkTheDaemon]]></username>
+				<homepage><![CDATA[http://mbarn.es]]></homepage>
+				<email><![CDATA[markthedaemon@gmail.com]]></email>
+			</author>
+		</author-group>
+		<mod-version>1.0.0</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.11</target-version>
+		</installation>
+		<history>
+			<entry>
+				<date>2012-10-24</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Initial release]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-11-16</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Fixes as requested by MOD team during validation]]></change>
+				</changelog>
+			</entry>
+		</history>
+	</header>
+	<action-group>
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[$redirect = request_var('redirect', "{$phpbb_root_path}index.$phpEx");
+$message = ($l_success) ? $l_success : $user->lang['LOGIN_REDIRECT'];
+$l_redirect = ($admin) ? $user->lang['PROCEED_TO_ACP'] : (($redirect === "{$phpbb_root_path}index.$phpEx" || $redirect === "index.$phpEx") ? $user->lang['RETURN_INDEX'] : $user->lang['RETURN_PAGE']);]]></find>
+				<action type="replace-with"><![CDATA[			if (!empty($config['new_user_welcome_topic_id']) && $config['new_user_welcome_topic'] == true && $user->data['user_lastvisit'] == 0)
+			{
+				$sql = 'SELECT topic_id
+					FROM ' . TOPICS_TABLE . '
+					WHERE topic_id = ' . $config['new_user_welcome_topic_id'];
+				$result = $db->sql_query($sql);
+				$row = $db->sql_fetchrow($result);
+				$db->sql_freeresult($result);
+				
+				if ($config['new_user_welcome_topic_id'] == $row['topic_id'])
+				{
+					$redirect = "{$phpbb_root_path}viewtopic.$phpEx?t=" . $config['new_user_welcome_topic_id'];
+					$message = ($l_success) ? $l_success : $user->lang['LOGIN_NEW_USER_WELCOME_TOPIC_REDIRECT'];
+					$l_redirect = $user->lang['RETURN_NEW_USER_WELCOME_TOPIC'];
+				}
+				else
+				{
+					$redirect = request_var('redirect', "{$phpbb_root_path}index.$phpEx");
+					$message = ($l_success) ? $l_success : $user->lang['LOGIN_REDIRECT'];
+					$l_redirect = ($admin) ? $user->lang['PROCEED_TO_ACP'] : (($redirect === "{$phpbb_root_path}index.$phpEx" || $redirect === "index.$phpEx") ? $user->lang['RETURN_INDEX'] : $user->lang['RETURN_PAGE']);
+				}
+			}
+			
+			else
+			{
+				$redirect = request_var('redirect', "{$phpbb_root_path}index.$phpEx");
+				$message = ($l_success) ? $l_success : $user->lang['LOGIN_REDIRECT'];
+				$l_redirect = ($admin) ? $user->lang['PROCEED_TO_ACP'] : (($redirect === "{$phpbb_root_path}index.$phpEx" || $redirect === "index.$phpEx") ? $user->lang['RETURN_INDEX'] : $user->lang['RETURN_PAGE']);
+			}]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/acp_board.php">
+			<edit>
+				<find><![CDATA['allow_quick_reply'		=> array('lang' => 'ALLOW_QUICK_REPLY',		'validate' => 'bool',	'type' => 'custom', 'method' => 'quick_reply', 'explain' => true),]]></find>
+				<action type="after-add"><![CDATA['new_user_welcome_topic'   => array('lang' => 'NEW_USER_WELCOME_TOPIC',   'validate' => 'bool',   'type' => 'radio:yes_no', 'explain' => true),
+'new_user_welcome_topic_id'      => array('lang' => 'NEW_USER_WELCOME_TOPIC_ID',            'validate' => 'int:0',   'type' => 'text:4:8', 'explain' => true),]]></action>
+			</edit>
+		</open>
+		<open src="language/en/ucp.php">
+			<edit>
+				<find><![CDATA['NO_NONMEMBER'	=> 'No non-member groups',]]></find>
+				<action type="after-add"><![CDATA['LOGIN_NEW_USER_WELCOME_TOPIC_REDIRECT'         => 'You have been successfully logged in. As this is your first visit you will be redirected to our welcome topic.',
+'RETURN_NEW_USER_WELCOME_TOPIC'		=> '%sProceed to welcome topic%s',]]></action>
+			</edit>
+		</open>
+		<open src="language/en/acp/board.php">
+			<edit>
+				<find><![CDATA['JAB_USERNAME_EXPLAIN'		=> 'Specify a registered username or a valid JID. The username will not be checked for validity. If you only specify a username, then your JID will be the username and the server you specified above. Else, specify a valid JID, for example user@jabber.org.',
+));]]></find>
+				<action type="after-add"><![CDATA[// New User Welcome Topic Redirect
+$lang = array_merge($lang, array(
+   'NEW_USER_WELCOME_TOPIC'            => 'New User Welcome Topic Redirect',
+   'NEW_USER_WELCOME_TOPIC_EXPLAIN'            => 'Redirect all new users to a specific topic upon first login on the board.',
+   'NEW_USER_WELCOME_TOPIC_ID'            => 'New User Welcome Topic ID',
+   'NEW_USER_WELCOME_TOPIC_ID_EXPLAIN'            => 'Enter the ID of the topic you wish to redirect all new users to.',
+   ));]]></action>
+			</edit>
+		</open>
+		<diy-instructions lang="en"><![CDATA[Configure the ID of the topic you wish to redirect to on the board features page of the ACP.]]></diy-instructions>
+	</action-group>
+</mod>

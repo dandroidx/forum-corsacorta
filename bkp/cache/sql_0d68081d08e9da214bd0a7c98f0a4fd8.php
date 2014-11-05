@@ -1,0 +1,5 @@
+<?php exit; ?>
+1415097953
+SELECT * FROM phpbb_bbcodes WHERE bbcode_id = 20 AND bbcode_match <> '.'
+938
+a:1:{i:0;a:16:{s:9:"bbcode_id";s:2:"20";s:10:"bbcode_tag";s:5:"glow=";s:15:"bbcode_helpline";s:14:"ABBC3_GLOW_TIP";s:18:"display_on_posting";s:1:"1";s:12:"bbcode_match";s:27:"[glow={COLOR}]{TEXT}[/glow]";s:10:"bbcode_tpl";s:89:"<div style="filter:Glow(color={COLOR},strength=4);color:#ffffff;height:110%">{TEXT}</div>";s:16:"first_pass_match";s:51:"!\[glow\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/glow\]!ies";s:18:"first_pass_replace";s:145:"'[glow=${1}:$uid]' . str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim('${2}')) . '[/glow:$uid]'";s:17:"second_pass_match";s:70:"!\[glow\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/glow:$uid\]!ies";s:19:"second_pass_replace";s:43:"$this->Text_effect_pass('glow', '$1', '$2')";s:13:"display_on_pm";s:1:"1";s:14:"display_on_sig";s:1:"1";s:7:"abbcode";s:1:"1";s:12:"bbcode_image";s:8:"glow.gif";s:12:"bbcode_order";s:2:"22";s:12:"bbcode_group";s:1:"0";}}

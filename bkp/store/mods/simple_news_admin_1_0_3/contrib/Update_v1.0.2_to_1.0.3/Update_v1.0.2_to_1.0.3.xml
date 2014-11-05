@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Simple News Admin Update v1.0.2 to 1.0.3]]></title>
+		<title lang="fr"><![CDATA[Annonce Admin simplifiée Update v1.0.2 to 1.0.3]]></title>
+		<title lang="it"><![CDATA[Semplice Notizie Admin Aggiornamento v1.0.2 a 1.0.3]]></title>
+		<description lang="en"><![CDATA[Upgrade Instructions]]></description>
+		<description lang="fr"><![CDATA[Mise a jour]]></description>
+		<description lang="it"><![CDATA[Istruzioni per l'aggiornamento]]></description>
+		<author-group>
+			<author>
+				<realname><![CDATA[Rey]]></realname>
+				<username><![CDATA[Galandas]]></username>
+				<homepage><![CDATA[http://phpbb3world.com]]></homepage>
+				<email><![CDATA[italy@phpbb3world.com]]></email>
+			</author>
+		</author-group>
+		<mod-version>1.0.3</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.12</target-version>
+		</installation>
+		<history>
+			<entry>
+				<date>2013-03-24</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[First initial release]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2013-06-09</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[No change in this version]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2013-06-10</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Added subsilver2 style]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2013-08-05</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Added choice of template]]></change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="template" href="subsilver2.xml" lang="en">subsilver2</link>
+			<link type="language" href="it.xml" lang="en">Italian</link>
+			<link type="language" href="fr.xml" lang="en">French</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/install_news_admin.php" to="install_news_admin.php"/>
+			<file from="root/adm/style/acp_news_admin.html" to="adm/style/acp_news_admin.html"/>
+			<file from="root/includes/acp/acp_news_admin.php" to="includes/acp/acp_news_admin.php"/>
+			<file from="root/language/en/mods/info_acp_news_admin.php" to="language/en/mods/info_acp_news_admin.php"/>
+			<file from="root/styles/prosilver/template/news_admin_body.html" to="styles/prosilver/template/news_admin_body.html"/>
+		</copy>
+		<open src="index.php">
+			<edit>
+				<find><![CDATA[// Start Simple News Admin
+   $sql = 'SELECT *
+      FROM ' . NEWS_ADMIN_TABLE;
+   $result = $db->sql_query($sql);
+   $row = $db->sql_fetchrow($result);
+   $db->sql_freeresult($result);
+
+   $news_breaker       = $row['news_breaker'];
+   $news_message       = generate_text_for_display($row['news_message'], $row['bbcode_uid'], $row['bbcode_bitfield'], $row['bbcode_options']);
+
+   if ( $news_breaker )
+   {
+      $template->assign_vars(array(
+         'NEWS_BREAKER'   => true,
+         'NEWS_MESSAGE'   => $news_message,
+      ));
+   }
+// End Simple News Admin]]></find>
+				<action type="replace-with"><![CDATA[// Start Simple News Admin by phpbb3world.com
+	$sql = 'SELECT *
+		FROM ' . NEWS_ADMIN_TABLE;
+	$result = $db->sql_query($sql);
+	$row = $db->sql_fetchrow($result);
+	$db->sql_freeresult($result);
+
+	$news_breaker 		= $row['news_breaker'];
+	$news_aspect 	    = $row['news_aspect'];
+	$news_message 		= generate_text_for_display($row['news_message'], $row['bbcode_uid'], $row['bbcode_bitfield'], $row['bbcode_options']);
+	
+   if ( $news_breaker )
+   {
+   $template->assign_vars(array(
+      'NEWS_MESSAGE'   => $news_message,
+      'NEWS_BREAKER'   => true,
+      'NEWS_ASPECT'   => ($row['news_aspect'] ? true : false),
+      ));
+   }
+// End Simple News Admin by phpbb3world.com]]></action>
+			</edit>
+		</open>
+		<php-installer><![CDATA[install_news_admin.php]]></php-installer>
+		<diy-instructions lang="en"><![CDATA[1) Charge is replace all files
+2) Make the changes changed files
+3) launches the file in your browser install_news_admin.php
+4) Delete the file install_news_admin.php after updated.]]></diy-instructions>
+		<diy-instructions lang="it"><![CDATA[1) Carica è sostituisci tutti i file
+2) fare le modifiche hai file cambiati
+3) lancia il file install_news_admin.php nel tuo browser
+4) Elimina il file install_news_admin.php dopo aggiornato.]]></diy-instructions>
+		<diy-instructions lang="fr"><![CDATA[1) Charge est de remplacer tous les fichiers
+2) Faire les modifications que vous avez changé les fichiers
+3) lance le fichier votre install_news_admin.php du navigateur
+4) Supprimer le install_news_admin.php après.]]></diy-instructions>
+	</action-group>
+</mod>

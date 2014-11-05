@@ -1,0 +1,163 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("flaticon.eot");
+	src: url("flaticon.eot#iefix") format("embedded-opentype"),
+	url("flaticon.woff") format("woff"),
+	url("flaticon.ttf") format("truetype"),
+	url("flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}.flaticon-anchor29:before {
+	content: "\e000";
+}
+.flaticon-band11:before {
+	content: "\e001";
+}
+.flaticon-band12:before {
+	content: "\e002";
+}
+.flaticon-battery133:before {
+	content: "\e003";
+}
+.flaticon-car106:before {
+	content: "\e004";
+}
+.flaticon-chainsaw:before {
+	content: "\e005";
+}
+.flaticon-circular209:before {
+	content: "\e006";
+}
+.flaticon-clamp:before {
+	content: "\e007";
+}
+.flaticon-compressor:before {
+	content: "\e008";
+}
+.flaticon-cutter5:before {
+	content: "\e009";
+}
+.flaticon-digger:before {
+	content: "\e00a";
+}
+.flaticon-disc24:before {
+	content: "\e00b";
+}
+.flaticon-drill8:before {
+	content: "\e00c";
+}
+.flaticon-engine2:before {
+	content: "\e00d";
+}
+.flaticon-filter17:before {
+	content: "\e00e";
+}
+.flaticon-gasoline3:before {
+	content: "\e00f";
+}
+.flaticon-glue1:before {
+	content: "\e010";
+}
+.flaticon-hammer46:before {
+	content: "\e011";
+}
+.flaticon-hammer47:before {
+	content: "\e012";
+}
+.flaticon-hammer48:before {
+	content: "\e013";
+}
+.flaticon-level7:before {
+	content: "\e014";
+}
+.flaticon-light82:before {
+	content: "\e015";
+}
+.flaticon-magnet11:before {
+	content: "\e016";
+}
+.flaticon-meter6:before {
+	content: "\e017";
+}
+.flaticon-oil10:before {
+	content: "\e018";
+}
+.flaticon-paint60:before {
+	content: "\e019";
+}
+.flaticon-pin38:before {
+	content: "\e01a";
+}
+.flaticon-piston3:before {
+	content: "\e01b";
+}
+.flaticon-plug29:before {
+	content: "\e01c";
+}
+.flaticon-polisher:before {
+	content: "\e01d";
+}
+.flaticon-road22:before {
+	content: "\e01e";
+}
+.flaticon-saw10:before {
+	content: "\e01f";
+}
+.flaticon-saw11:before {
+	content: "\e020";
+}
+.flaticon-saw9:before {
+	content: "\e021";
+}
+.flaticon-shovel6:before {
+	content: "\e022";
+}
+.flaticon-shovel7:before {
+	content: "\e023";
+}
+.flaticon-speedometer26:before {
+	content: "\e024";
+}
+.flaticon-temperature10:before {
+	content: "\e025";
+}
+.flaticon-tiremark:before {
+	content: "\e026";
+}
+.flaticon-tool13:before {
+	content: "\e027";
+}
+.flaticon-tool14:before {
+	content: "\e028";
+}
+.flaticon-tools8:before {
+	content: "\e029";
+}
+.flaticon-two293:before {
+	content: "\e02a";
+}
+.flaticon-vacuum7:before {
+	content: "\e02b";
+}
+.flaticon-vent:before {
+	content: "\e02c";
+}
+.flaticon-wheelbarrow5:before {
+	content: "\e02d";
+}
+.flaticon-wood7:before {
+	content: "\e02e";
+}
+.flaticon-work2:before {
+	content: "\e02f";
+}
+.flaticon-wrench63:before {
+	content: "\e030";
+}
